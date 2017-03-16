@@ -8,10 +8,18 @@
 <title><s:text name="loginPage"/></title>
 </head>
 <body>
-<s:form action="login">
-	<s:textfield name="username" key="user"/>
+<s:form action="loginAction">
+ 	<s:textfield name="username" key="user"/>
 	<s:textfield name="password" key="pass"/>
 	<s:submit key="login"/>
+	<s:submit key="register" onclick ="regist();"/> 
 </s:form>
 </body>
+<script type="text/javascript">
+function regist(){
+	alert("hello");
+	var targetForm = document.forms[0];
+	targetForm.action = "registerAction";
+}
+</script>
 </html>

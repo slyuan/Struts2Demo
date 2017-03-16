@@ -8,6 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-	<s:text name="failTip"/>
+	<s:text name="failTip"/><br/>
+	${requestScope.tip}<br/>
 </body>
 </html>

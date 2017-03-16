@@ -11,5 +11,8 @@
 	<s:text name="succTip">
 		<s:param>${sessionScope.user}</s:param>
 	</s:text><br/>
+	${requestScope.tip}<br/>
+	本网站的访问次数：${applicationScope.counter}<br/>
+	从系统中读取cookie：${cookie.user.value}<br/>
 </body>
 </html>
