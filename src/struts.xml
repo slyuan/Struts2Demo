@@ -9,7 +9,24 @@
 	<constant name="struts.devMode" value="true" />
 	<!-- 所有的Action定义都应该放在package下 -->	
 	<package name="crazyit" namespace="/" extends="struts-default">
-<!-- 		<action name="ogin" class="org.crazyit.app.action.LoginAction" method ="login">
+	
+			<!-- 定义全局结果映射 -->
+		<global-results>
+			<!-- 定义当sql、root两个逻辑异常都对应exception.jsp页 -->
+			<result name="sql">/WEB-INF/content/exception.jsp</result>
+			<result name="root">/WEB-INF/content/exception.jsp</result>
+		</global-results>
+
+		<!-- 定义全局异常映射 -->
+		<global-exception-mappings>
+			<!-- 当Action中遇到SQLException异常时，
+				系统将转入name为sql的结果中-->
+			<exception-mapping exception="java.sql.SQLException" result="sql"/>
+			<!-- 当Action中遇到Exception异常时，
+				系统将转入name为root的结果中-->
+			<exception-mapping exception="java.lang.Exception" result="root"/>
+		</global-exception-mappings>
+<!--  		<action name="ogin" class="org.crazyit.app.action.LoginAction" method ="login">
 			定义三个逻辑视图和物理资源之间的映射
 			<result name="error">/WEB-INF/content/error.jsp</result>
 			<result name="success">/WEB-INF/content/welcome.jsp</result>
@@ -20,10 +37,27 @@
 			<result name="success">/WEB-INF/content/welcome.jsp</result>
 		</action> -->
 		<action name="*Action" class="org.crazyit.app.action.LoginAction" method="{1}">
-			<!-- 定义三个逻辑视图和物理资源之间的映射 -->
-			<result name="error">/WEB-INF/content/error.jsp</result>
-			<result name="success">/WEB-INF/content/welcome.jsp</result>
+		<!-- 	定义三个逻辑视图和物理资源之间的映射 -->
+		<exception-mapping result="my" exception="org.crazyit.app.exception.MyException"></exception-mapping>
+			<result name="error" >/WEB-INF/content/error.jsp</result>
+			<result name="success" >/WEB-INF/content/welcome.jsp</result>
+			<result name="my" >/WEB-INF/content/exception.jsp</result>
 		</action>
+ 		<!-- 在页面输出源代码 -->
+<!-- 		<action name="*Action" class="org.crazyit.app.action.LoginAction" method="{1}">
+			定义三个逻辑视图和物理资源之间的映射
+			<result name="error" type="plainText">/WEB-INF/content/error.jsp</result>
+			<result name="success" type="plainText">
+			<param name="location">/WEB-INF/content/welcome.jsp</param>
+			<param name="charSet">UTF-8</param>
+			</result>
+		</action> -->
+		<!-- 重定向页面 -->
+<!-- 		<action name="*Action" class="org.crazyit.app.action.LoginAction" method="{1}">
+			定义三个逻辑视图和物理资源之间的映射
+			<result name="error">/WEB-INF/content/error.jsp</result>
+			<result name="success" type="redirect">/welcome.jsp</result>
+		</action> -->
 		<action name="*">
 			<result>/WEB-INF/content/loginForm.jsp</result>
 		</action>
