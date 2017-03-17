@@ -17,6 +17,7 @@
 			<result name="root">/WEB-INF/content/exception.jsp</result>
 		</global-results>
 
+
 		<!-- 定义全局异常映射 -->
 		<global-exception-mappings>
 			<!-- 当Action中遇到SQLException异常时，
